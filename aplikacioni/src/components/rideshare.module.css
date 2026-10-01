@@ -1,0 +1,19 @@
+.faqja { max-width: 560px; margin: 0 auto; padding: 24px 16px 48px; font-family: system-ui, sans-serif; color: #1c2430; }
+.titulli { font-size: 1.6rem; margin: 0 0 4px; }
+.nentitulli { margin: 0 0 20px; color: #5b6573; }
+.lista { display: grid; gap: 12px; list-style: none; padding: 0; margin: 0; }
+.karta { display: block; padding: 16px; border: 1px solid #d5dbe3; border-radius: 12px; background: #fff; color: inherit; text-decoration: none; }
+.karta:hover, .karta:focus-visible { border-color: #3b5bdb; outline: none; box-shadow: 0 0 0 3px rgba(59, 91, 219, .2); }
+.rruga { font-size: 1.1rem; font-weight: 600; margin: 0 0 6px; }
+.meta { display: flex; justify-content: space-between; gap: 8px; color: #5b6573; font-size: .95rem; }
+.plot { color: #b42318; font-weight: 600; }
+.mbrapa { display: inline-block; margin-bottom: 16px; color: #3b5bdb; }
+.detaje { margin: 0 0 20px; padding: 0; display: grid; gap: 8px; }
+.detaje div { display: flex; justify-content: space-between; border-bottom: 1px solid #e6eaf0; padding-bottom: 8px; }
+.detaje dt { color: #5b6573; }
+.detaje dd { margin: 0; font-weight: 600; }
+.butoni { width: 100%; padding: 14px; font-size: 1rem; font-weight: 600; border: 0; border-radius: 10px; background: #3b5bdb; color: #fff; cursor: pointer; }
+.butoni:disabled { background: #c3c9d4; cursor: not-allowed; }
+.statusi { margin-top: 12px; padding: 12px; border-radius: 10px; background: #eef2ff; font-weight: 600; }
+.mesazhi { color: #5b6573; margin-top: 8px; }
+@media (max-width: 400px) { .titulli { font-size: 1.35rem; } }

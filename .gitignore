@@ -1,0 +1,7 @@
+aplikacioni/node_modules/
+aplikacioni/.next/
+aplikacioni/.vercel/
+aplikacioni/out/
+aplikacioni/tsconfig.tsbuildinfo
+aplikacioni/.env*
+!aplikacioni/.env.example
