@@ -24,7 +24,7 @@ export default async function DetajetUdhetimit({
         <div><dt>Vende të lira</dt><dd>{udhetimi.vendeTeLira}</dd></div>
         <div><dt>Shoferi</dt><dd>{udhetimi.shoferi}</dd></div>
       </dl>
-      <ButoniKerkeses vendeTeLira={udhetimi.vendeTeLira} />
+      <ButoniKerkeses id={udhetimi.id} vendeTeLira={udhetimi.vendeTeLira} />
     </main>
   );
 }
