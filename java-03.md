@@ -1,16 +1,20 @@
-# Java 3: kartat dhe faqet
+# RideShare — Java 3
 
 ## Çfarë ndërtova
-- `src/lib/udhetimet.ts`: tre udhëtime fiktive (karta 3 pa vende të lira).
-- `KartaUdhetimi.tsx`: karta që çon te `/udhetimi/[id]`.
-- Faqja e detajeve me butonin "Kërko vend" (shfaq "Simulim: Në pritje").
-- Faqja "Udhëtimi nuk u gjet" për ID të pavlefshme.
-## Provat
-### Prova 1: lista në telefon
-U hap në Chrome → Inspect → modaliteti i telefonit. Të tria kartat shfaqen njëra nën tjetrën dhe teksti lexohet. Nuk pata problem.
+Sot i lidha tri ekranet e RideShare në një rrjedhë që punon: lista me tri karta, faqja e detajeve (`/udhetimi/[id]`) dhe butoni "Kërko vend" që simulon një kërkesë. Shtova edhe faqen "Udhëtimi nuk u gjet" për ID që nuk ekzistojnë.
 
-### Prova 2: detajet e kartës 2, zero vende dhe ID 99
-Kartela 2 hapi /udhetimi/2 me detajet e duhura. Karta 3 ka butonin të çaktivizuar. /udhetimi/99 shfaqi "Udhëtimi nuk u gjet".
+## Provat që bëra
+### Prova 1: Lista në telefon
+Hapa faqen kryesore në pamjen e telefonit; prisja tri karta pa lëvizje anash; pashë [KONFIRMO: a u shfaqën tri karta pa lëvizje anash?].
 
-### Prova 3: mesazhi "Në pritje" dhe kthimi mbrapa
-Pas "Kërko vend" u shfaq "Simulim: Në pritje". Lidhja "Mbrapa te lista" më ktheu te faqja kryesore.
+### Prova 2: Detajet e udhëtimit të dytë
+Klikova kartën 2; prisja adresën /udhetimi/2 dhe vendtakimin e saj; pashë [KONFIRMO]. Te karta 3 (zero vende) butoni "Kërko vend" është i çaktivizuar dhe shfaqet "Nuk ka vende të lira". Te /udhetimi/99 u shfaq faqja "Udhëtimi nuk u gjet".
+
+### Prova 3: Kërkesa në pritje
+Klikova Kërko vend; prisja "Simulim: Në pritje", pa rezervim real; pashë [KONFIRMO]. Pastaj u ktheva te detajet dhe lista me lidhjen "Mbrapa te lista": [KONFIRMO].
+
+## Çfarë do të përmirësoj
+Kërkesa "Në pritje" nuk ruhet: nëse rifreskoj faqen, ajo humbet. Javën tjetër mund ta ruaj gjendjen.
+
+## Ndihma nga AI (Artificial Intelligence – inteligjencë artificiale)
+Claude më shkroi kodin fillestar (kartat, faqen e detajeve, butonin dhe faqen "nuk u gjet") dhe e kontrolloi sintaksën. Unë e nisa projektin, e provova në shfletues dhe i shkrova rezultatet e provave vetë.
