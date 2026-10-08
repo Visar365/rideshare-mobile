@@ -14,3 +14,4 @@
 
 ## Kufiri i sotëm
 Aplikacioni lexon vetëm udhëtime fiktive. Ndryshimet bëhen në SQL Editor. Nuk ka formular publik për shkrim, identifikim shoferi ose rezervim real.
+
