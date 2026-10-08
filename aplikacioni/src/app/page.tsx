@@ -1,19 +1,36 @@
-import KartaUdhetimi from "@/components/KartaUdhetimi";
-import { udhetimet } from "@/lib/udhetimet";
-import styles from "@/components/rideshare.module.css";
+import { KartaUdhetimi } from "@/components/KartaUdhetimi";
+import { lexoUdhetimet, type Udhetim } from "@/lib/udhetimet";
 
-export default function Home() {
+// Lexo bazën përsëri në çdo kërkesë për këtë faqe.
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  let udhetimet: Udhetim[];
+  try {
+    udhetimet = await lexoUdhetimet();
+  } catch {
+    return (
+      <main>
+        <h1>RideShare</h1>
+        <p role="alert">Nuk u lidhëm me databazën. Provo përsëri.</p>
+        <a className="action" href="/">Provo përsëri</a>
+      </main>
+    );
+  }
+
   return (
-    <main className={styles.faqja}>
-      <h1 className={styles.titulli}>RideShare</h1>
-      <p className={styles.nentitulli}>Zgjidh një udhëtim</p>
-      <ul className={styles.lista}>
-        {udhetimet.map((u) => (
-          <li key={u.id}>
-            <KartaUdhetimi udhetimi={u} />
-          </li>
-        ))}
-      </ul>
+    <main>
+      <h1>RideShare · Udhëtimet për AAB</h1>
+      <p>Burimi: Neon · të dhëna fiktive për ushtrime</p>
+      {udhetimet.length === 0 ? (
+        <p>Nuk ka udhëtime për momentin.</p>
+      ) : (
+        <div className="trip-list">
+          {udhetimet.map((udhetim) => (
+            <KartaUdhetimi key={udhetim.id} udhetim={udhetim} />
+          ))}
+        </div>
+      )}
     </main>
   );
 }

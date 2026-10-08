@@ -1,0 +1,97 @@
+:root {
+  color-scheme: light;
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --text: #1d2736;
+  --muted: #5f6b7a;
+  --primary: #1f6feb;
+  --primary-dark: #124fa8;
+  --border: #dfe7f1;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+}
+
+h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(2rem, 3vw, 2.6rem);
+}
+
+p {
+  margin: 0.35rem 0;
+  color: var(--muted);
+}
+
+.trip-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.trip-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1rem;
+  box-shadow: 0 4px 16px rgba(29, 39, 54, 0.05);
+}
+
+.trip-card h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.trip-card a,
+.action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.75rem;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  background: var(--primary);
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.trip-card a:hover,
+.action:hover {
+  background: var(--primary-dark);
+}
+
+.trip-card .meta {
+  display: grid;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+button.action:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+[role="alert"] {
+  display: inline-block;
+  margin: 1rem 0;
+  padding: 0.75rem 1rem;
+  background: #fff2f2;
+  color: #8b1e1e;
+  border: 1px solid #f5c1c1;
+  border-radius: 10px;
+}

@@ -1,20 +1,18 @@
 import Link from "next/link";
 import type { Udhetim } from "@/lib/udhetimet";
-import styles from "./rideshare.module.css";
 
-export default function KartaUdhetimi({ udhetimi }: { udhetimi: Udhetim }) {
-  const plot = udhetimi.vendeTeLira === 0;
+export function KartaUdhetimi({ udhetim }: { udhetim: Udhetim }) {
   return (
-    <Link href={`/udhetimi/${udhetimi.id}`} className={styles.karta}>
-      <p className={styles.rruga}>
-        {udhetimi.nga} – {udhetimi.drejt}
-      </p>
-      <div className={styles.meta}>
-        <span>{udhetimi.ora} · {udhetimi.cmimi} €</span>
-        <span className={plot ? styles.plot : undefined}>
-          {plot ? "Nuk ka vende të lira" : `${udhetimi.vendeTeLira} vende të lira`}
-        </span>
+    <article className="trip-card">
+      <h2>
+        {udhetim.nisja} → {udhetim.destinacioni}
+      </h2>
+      <div className="meta">
+        <span>Ora: {udhetim.ora}</span>
+        <span>Vendtakimi: {udhetim.vendtakimi}</span>
+        <span>Vende të lira: {udhetim.vende}</span>
       </div>
-    </Link>
+      <Link href={`/udhetimi/${udhetim.id}`}>Shiko detajet</Link>
+    </article>
   );
 }

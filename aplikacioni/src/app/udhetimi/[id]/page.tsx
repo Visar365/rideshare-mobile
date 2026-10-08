@@ -1,34 +1,41 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import ButoniKerkeses from "@/components/ButoniKerkeses";
-import { gjejUdhetimin, udhetimet } from "@/lib/udhetimet";
-import styles from "@/components/rideshare.module.css";
+import { gjejUdhetimin } from "@/lib/udhetimet";
 
-// Next.js 15+: params është Promise. Në Next 14 përdor: { params: { id: string } }
-export default async function DetajetUdhetimit({
+export const dynamic = "force-dynamic";
+
+export default async function Detajet({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const udhetimi = gjejUdhetimin(Number(id));
-  if (!udhetimi) notFound();
+  let udhetim;
+  try {
+    udhetim = await gjejUdhetimin(id);
+  } catch {
+    return (
+      <main>
+        <h1>RideShare</h1>
+        <p role="alert">Nuk u lidhëm me databazën. Provo përsëri.</p>
+        <Link href="/">← Kthehu te lista</Link>
+      </main>
+    );
+  }
+  if (!udhetim) notFound();
 
   return (
-    <main className={styles.faqja}>
-      <Link href="/" className={styles.mbrapa}>← Mbrapa te lista</Link>
-      <h1 className={styles.titulli}>{udhetimi.nga} – {udhetimi.drejt}</h1>
-      <dl className={styles.detaje}>
-        <div><dt>Ora</dt><dd>{udhetimi.ora}</dd></div>
-        <div><dt>Çmimi</dt><dd>{udhetimi.cmimi} €</dd></div>
-        <div><dt>Vende të lira</dt><dd>{udhetimi.vendeTeLira}</dd></div>
-        <div><dt>Shoferi</dt><dd>{udhetimi.shoferi}</dd></div>
-      </dl>
-      <ButoniKerkeses id={udhetimi.id} vendeTeLira={udhetimi.vendeTeLira} />
+    <main>
+      <Link href="/">← Kthehu te lista</Link>
+      <h1>{udhetim.nisja} – {udhetim.destinacioni}</h1>
+      <p>Ora: {udhetim.ora}</p>
+      <p>Vendtakimi: {udhetim.vendtakimi}</p>
+      <p>Vende të lira: {udhetim.vende}</p>
+      {udhetim.vende > 0 ? (
+        <Link className="action" href={`/udhetimi/${id}/kerkesa`}>
+          Kërko vend
+        </Link>
+      ) : <button className="action" disabled>Nuk ka vende të lira</button>}
     </main>
   );
-}
-
-export function generateStaticParams() {
-  return udhetimet.map((udhetimi) => ({ id: String(udhetimi.id) }));
 }

@@ -1,54 +1,39 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { gjejUdhetimin, udhetimet } from "@/lib/udhetimet";
-import styles from "@/components/rideshare.module.css";
+import { gjejUdhetimin } from "@/lib/udhetimet";
 
-export default async function KerkesaUdhetimit({
+export const dynamic = "force-dynamic";
+
+export default async function Kerkesa({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const udhetimi = gjejUdhetimin(Number(id));
-  if (!udhetimi) notFound();
-
-  const plot = udhetimi.vendeTeLira === 0;
+  let udhetim;
+  try {
+    udhetim = await gjejUdhetimin(id);
+  } catch {
+    return (
+      <main>
+        <h1>RideShare</h1>
+        <p role="alert">Nuk u lidhëm me databazën. Provo përsëri.</p>
+        <Link href="/">← Kthehu te lista</Link>
+      </main>
+    );
+  }
+  if (!udhetim) notFound();
 
   return (
-    <main className={styles.faqja}>
-      <Link href={`/udhetimi/${udhetimi.id}`} className={styles.mbrapa}>
-        ← Mbrapa te udhëtimi
-      </Link>
-      <h1 className={styles.titulli}>Simulimi i kërkesës</h1>
-      <p className={styles.nentitulli}>
-        {udhetimi.nga} – {udhetimi.drejt}
-      </p>
-      <dl className={styles.detaje}>
-        <div><dt>Ora</dt><dd>{udhetimi.ora}</dd></div>
-        <div><dt>Çmimi</dt><dd>{udhetimi.cmimi} €</dd></div>
-        <div><dt>Shoferi</dt><dd>{udhetimi.shoferi}</dd></div>
-      </dl>
-      {plot ? (
-        <p className={styles.mesazhi} role="alert">
-          Ky udhëtim është plot, prandaj nuk mund të dërgohet kërkesa.
-        </p>
-      ) : (
+    <main>
+      <Link href={`/udhetimi/${id}`}>← Kthehu te detajet</Link>
+      {udhetim.vende > 0 ? (
         <>
-          <p className={styles.statusi} role="status">
-            Kërkesa u dërgua me sukses. Statusi: Në pritje.
-          </p>
-          <p className={styles.mesazhi}>
-            Ky është vetëm një simulim; nuk është krijuar rezervim real.
-          </p>
+          <h1>Simulim: Në pritje</h1>
+          <p>Kërkesa për {udhetim.nisja} nuk është dërguar te shoferi.</p>
+          <p>Ruajtjen dhe konfirmimin real do t’i shtojmë më vonë.</p>
         </>
-      )}
-      <Link href="/" className={styles.mbrapa}>
-        Kthehu te lista e udhëtimeve
-      </Link>
+      ) : <h1>Nuk ka vende të lira.</h1>}
     </main>
   );
-}
-
-export function generateStaticParams() {
-  return udhetimet.map((udhetimi) => ({ id: String(udhetimi.id) }));
 }
