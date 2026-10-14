@@ -95,3 +95,103 @@ button.action:disabled {
   border: 1px solid #f5c1c1;
   border-radius: 10px;
 }
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.topbar a {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.panel-card {
+  max-width: 720px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+.eyebrow {
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.profile-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.profile-row h2,
+.profile-row p {
+  margin: 0.2rem 0;
+}
+
+.pill {
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
+.form-section {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.time-form {
+  display: grid;
+  gap: 0.65rem;
+  max-width: 420px;
+  margin-top: 1rem;
+}
+
+.time-form input,
+.time-form select {
+  width: 100%;
+  padding: 0.7rem;
+  color: var(--text);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.action.secondary {
+  background: var(--muted);
+}
+
+.demo-login {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.notice,
+.success,
+.empty,
+.demo-note {
+  margin: 1rem 0;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.success {
+  color: #176b45;
+  background: #eaf8f0;
+}

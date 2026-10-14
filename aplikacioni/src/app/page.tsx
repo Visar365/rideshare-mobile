@@ -1,5 +1,6 @@
 import { KartaUdhetimi } from "@/components/KartaUdhetimi";
 import { lexoUdhetimet, type Udhetim } from "@/lib/udhetimet";
+import Link from "next/link";
 
 // Lexo bazën përsëri në çdo kërkesë për këtë faqe.
 export const dynamic = "force-dynamic";
@@ -20,8 +21,8 @@ export default async function Home() {
 
   return (
     <main>
-      <h1>RideShare · Udhëtimet për AAB</h1>
-      <p>Burimi: Neon · të dhëna fiktive për ushtrime</p>
+      <nav className="topbar"><h1>RideShare · Udhëtimet për AAB</h1><Link href="/panel">Paneli im</Link></nav>
+      <p>{process.env.DATABASE_URL ? "Burimi: Neon · të dhëna për ushtrime" : "Udhëtime demonstruese lokale"}</p>
       {udhetimet.length === 0 ? (
         <p>Nuk ka udhëtime për momentin.</p>
       ) : (
@@ -30,6 +31,9 @@ export default async function Home() {
             <KartaUdhetimi key={udhetim.id} udhetim={udhetim} />
           ))}
         </div>
+      )}
+      {!process.env.DATABASE_URL && process.env.NODE_ENV === "development" && (
+        <p className="demo-note">Modalitet demonstrimi lokal; ndryshimet humbin kur ndalet serveri.</p>
       )}
     </main>
   );
