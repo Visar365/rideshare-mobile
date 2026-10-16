@@ -52,4 +52,4 @@ si ikonë në telefon nuk u bë; ushtrimi e shënon si opsional.
 - Commit-i fillestar i PWA-së: `065c42b` — Add Java 6 offline PWA
 - Push origin: u shty te `main`.
 - Dorëzimi: [Issue #589 · Java 6](https://github.com/arbenl/arbenl-mobile-assignments-2026-2027/issues/589).
-- Kontrolli automatik: 5/5 kontrolle teknike kaluan te commit-i `e17514d`; ky kontroll nuk ekzekuton aplikacionin dhe nuk është notë.
+- Kontrolli automatik: 5/5 kontrolle teknike kaluan; kontrolli nuk ekzekuton aplikacionin dhe nuk është notë.
