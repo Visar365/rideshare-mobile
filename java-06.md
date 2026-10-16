@@ -41,7 +41,7 @@ telefon. Prova me ndryshim real të Neon mbetet e ndarë nga simulimi.
 
 - Hapat: Simulimi mori fillimisht 08:15, pastaj përgjigje të re 08:25 dhe më pas u ndërpre rrjeti. Për provën reale kërkohet ndryshim në Neon, rifreskim online dhe kontroll offline.
 - Rezultati i pritur: Kopja e re 08:25 shfaqet edhe pasi kërkesa e radhës dështon.
-- Rezultati real: Simulimi verifikoi zëvendësimin e kopjes 08:15 me 08:25. Prova reale nuk u krye: ky checkout nuk ka `DATABASE_URL` ose skedar konfigurimi Neon, prandaj nuk u ndryshua asnjë rresht në databazë.
+- Rezultati real: Simulimi verifikoi zëvendësimin e kopjes 08:15 me 08:25. Prova me Neon nuk u krye: checkout-i nuk ka `DATABASE_URL` ose skedar konfigurimi Neon. URL-të e deployment-it Vercel të gjetura në GitHub kërkojnë hyrje në Vercel, prandaj nuk mund të përdoren për këtë provë. Asnjë rresht i databazës nuk u ndryshua.
 - Kaloi / Dështoi: Kaloi simulimi. Prova me Neon mbetet e papërfunduar dhe nuk raportohet si e kaluar.
 
 ## Publikimi
