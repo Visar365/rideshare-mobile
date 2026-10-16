@@ -15,38 +15,39 @@
 - Sintaksa e `aplikacioni/public/sw.js` dhe skriptit të `aplikacioni/public/offline.html` (`node --check`): kaloi.
 - `npm run build` nga `aplikacioni/`: kaloi.
 - Serveri lokal në modalitet zhvillimi: manifesti, API-ja, faqja offline dhe service worker-i u përgjigjën me HTTP 200. API-ja ktheu 3 udhëtime demo me fushat `id`, `nisja`, `destinacioni`, `ora`, `vendtakimi`, `vende`.
+- Prova reale në Edge: faqja kryesore u hap online, service worker-i u aktivizua dhe lexuesi shfaqi tri udhëtime. Me faqen dhe service worker-in në gjendje offline, rifreskimi shfaqi tri kartat nga cache dhe paralajmërimin se lista mund të jetë e vjetruar.
 - Simulimi i service worker-it: kaloi për ruajtjen e përgjigjes 08:15, fallback offline, përditësimin në 08:25 pas rilidhjes dhe përjashtimin e POST/panelit.
 
 ## Provat praktike
 
-Mjedisi nuk ka browser/DevTools të disponueshëm, prandaj rezultatet më poshtë
-dallojnë kontrollet HTTP dhe simulimin nga provat reale në telefon/shfletues.
+Prova offline u bë në Edge desktop me DevTools Protocol; nuk u bë instalim në
+telefon. Prova me ndryshim real të Neon mbetet e ndarë nga simulimi.
 
 ### Prova 1 · Manifesti dhe vizita online
 
 - Hapat: U kërkuan `/manifest.webmanifest`, `/api/udhetimet`, `/offline.html` dhe `/sw.js` në serverin lokal.
 - Rezultati i pritur: Manifesti ka dy ikona; API-ja jep tri udhëtime publike.
-- Rezultati real: HTTP 200 për të katër adresat; manifesti dha ikonat 192×192 dhe 512×512, API-ja dha 3 udhëtime me fushat publike.
-- Kaloi / Dështoi: Kaloi kontrolli HTTP. Instalimi i worker-it në browser nuk u provua.
+- Rezultati real: HTTP 200 për të katër adresat; manifesti dha ikonat 192×192 dhe 512×512, API-ja dha 3 udhëtime me fushat publike. Në Edge, worker-i u aktivizua dhe faqja shfaqi tri karta.
+- Kaloi / Dështoi: Kaloi në Edge dhe në kontrollin HTTP. Instalimi si ikonë në telefon nuk u provua; është opsional sipas ushtrimit.
 
 ### Prova 2 · Pa internet, edhe pas rifreskimit
 
-- Hapat: U simulua përgjigjja 08:15, ndërprerja e rrjetit dhe kërkesa e radhës.
+- Hapat: U ngarkua lista në Edge me internet, pastaj u çaktivizua rrjeti për faqen dhe service worker-in në DevTools dhe u rifreskua lexuesi.
 - Rezultati i pritur: Shfaqet kopja 08:15 me burim `cache`; POST dhe paneli nuk ruhen.
-- Rezultati real: Simulimi verifikoi kopjen offline dhe përjashtimin e POST/panelit. Rifreskimi real në DevTools nuk u provua.
-- Kaloi / Dështoi: Kaloi simulimi; prova në browser mbetet për t'u kryer.
+- Rezultati real: Edge shfaqi tri kartat e ruajtura dhe mesazhin “Lista e fundit e ruajtur · Mund të jetë vjetruar. Serveri nuk u arrit.” Simulimi veçmas verifikoi përjashtimin e POST/panelit.
+- Kaloi / Dështoi: Kaloi prova reale offline në Edge dhe simulimi i kufijve të cache-it.
 
 ### Prova 3 · Rikthe lidhjen dhe merr listën e re
 
-- Hapat: Simulimi mori fillimisht 08:15, pastaj përgjigje të re 08:25 dhe më pas u ndërpre rrjeti.
+- Hapat: Simulimi mori fillimisht 08:15, pastaj përgjigje të re 08:25 dhe më pas u ndërpre rrjeti. Për provën reale kërkohet ndryshim në Neon, rifreskim online dhe kontroll offline.
 - Rezultati i pritur: Kopja e re 08:25 shfaqet edhe pasi kërkesa e radhës dështon.
-- Rezultati real: Simulimi verifikoi zëvendësimin e kopjes 08:15 me 08:25. Ndryshimi real në Neon/SQL nuk u krye sepse nuk ka konfigurim databaze në këtë projekt.
-- Kaloi / Dështoi: Kaloi simulimi; prova me Neon mbetet për t'u kryer.
+- Rezultati real: Simulimi verifikoi zëvendësimin e kopjes 08:15 me 08:25. Prova reale nuk u krye: ky checkout nuk ka `DATABASE_URL` ose skedar konfigurimi Neon, prandaj nuk u ndryshua asnjë rresht në databazë.
+- Kaloi / Dështoi: Kaloi simulimi. Prova me Neon mbetet e papërfunduar dhe nuk raportohet si e kaluar.
 
 ## Publikimi
 
 - Repository personal: https://github.com/Visar365/rideshare-mobile
-- Commit: `065c42b` — Add Java 6 offline PWA
+- Commit-i fillestar i PWA-së: `065c42b` — Add Java 6 offline PWA
 - Push origin: u shty te `main`.
 - Dorëzimi: [Issue #589 · Java 6](https://github.com/arbenl/arbenl-mobile-assignments-2026-2027/issues/589).
-- Kontrolli automatik: 5/5 kontrolle teknike kaluan te commit-i `58cb6f0`; ky kontroll nuk ekzekuton aplikacionin dhe nuk është notë.
+- Kontrolli automatik: 5/5 kontrolle teknike kaluan te commit-i `e17514d`; ky kontroll nuk ekzekuton aplikacionin dhe nuk është notë.
