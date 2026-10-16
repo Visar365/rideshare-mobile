@@ -14,35 +14,37 @@
 - TypeScript (`tsc --noEmit`): kaloi.
 - Sintaksa e `aplikacioni/public/sw.js` dhe skriptit të `aplikacioni/public/offline.html` (`node --check`): kaloi.
 - `npm run build` nga `aplikacioni/`: kaloi.
-- Serveri lokal në modalitet zhvillimi: manifesti, API-ja, faqja offline dhe service worker-i u përgjigjën me HTTP 200. API-ja ktheu 3 udhëtime demo me fushat `id`, `nisja`, `destinacioni`, `ora`, `vendtakimi`, `vende`.
-- Prova reale në Edge: faqja kryesore u hap online, service worker-i u aktivizua dhe lexuesi shfaqi tri udhëtime. Me faqen dhe service worker-in në gjendje offline, rifreskimi shfaqi tri kartat nga cache dhe paralajmërimin se lista mund të jetë e vjetruar.
+- Neon-i ekzistues kishte skemën e Javës 4; u aplikua migrimi shtues `aplikacioni/schema-java05.sql` që krijon `profilet` dhe kolonën `shofer_id`. Asnjë rresht udhëtimi nuk u fshi.
+- Serveri lokal me Neon real: manifesti, API-ja, faqja offline dhe service worker-i u përgjigjën me HTTP 200. API-ja ktheu tri udhëtime me vetëm fushat publike `id`, `nisja`, `destinacioni`, `ora`, `vendtakimi`, `vende`.
+- Prova reale në Edge: service worker-i u aktivizua, rifreskimi online lexoi ndryshimin real 08:25 nga Neon, ndërsa rifreskimi pasi serveri u ndal lexoi tri kartat nga cache dhe shfaqi paralajmërimin për të dhëna të vjetra.
+- Pamja në 375 px: lexuesi shfaqi tri karta, pa tejmbushje horizontale (`scrollWidth` 375 px).
 - Simulimi i service worker-it: kaloi për ruajtjen e përgjigjes 08:15, fallback offline, përditësimin në 08:25 pas rilidhjes dhe përjashtimin e POST/panelit.
 
 ## Provat praktike
 
-Prova offline u bë në Edge desktop me DevTools Protocol; nuk u bë instalim në
-telefon. Prova me ndryshim real të Neon mbetet e ndarë nga simulimi.
+Provat u bënë në Edge desktop me DevTools Protocol dhe viewport 375 px. Instalimi
+si ikonë në telefon nuk u bë; ushtrimi e shënon si opsional.
 
 ### Prova 1 · Manifesti dhe vizita online
 
-- Hapat: U kërkuan `/manifest.webmanifest`, `/api/udhetimet`, `/offline.html` dhe `/sw.js` në serverin lokal.
+- Hapat: U kërkuan `/manifest.webmanifest`, `/api/udhetimet`, `/offline.html` dhe `/sw.js` në serverin lokal me Neon real.
 - Rezultati i pritur: Manifesti ka dy ikona; API-ja jep tri udhëtime publike.
-- Rezultati real: HTTP 200 për të katër adresat; manifesti dha ikonat 192×192 dhe 512×512, API-ja dha 3 udhëtime me fushat publike. Në Edge, worker-i u aktivizua dhe faqja shfaqi tri karta.
+- Rezultati real: HTTP 200 për të katër adresat; manifesti dha ikonat 192×192 dhe 512×512. Edge aktivizoi worker-in dhe API-ja ktheu tri udhëtimet reale me fushat publike.
 - Kaloi / Dështoi: Kaloi në Edge dhe në kontrollin HTTP. Instalimi si ikonë në telefon nuk u provua; është opsional sipas ushtrimit.
 
 ### Prova 2 · Pa internet, edhe pas rifreskimit
 
-- Hapat: U ngarkua lista në Edge me internet, pastaj u çaktivizua rrjeti për faqen dhe service worker-in në DevTools dhe u rifreskua lexuesi.
-- Rezultati i pritur: Shfaqet kopja 08:15 me burim `cache`; POST dhe paneli nuk ruhen.
-- Rezultati real: Edge shfaqi tri kartat e ruajtura dhe mesazhin “Lista e fundit e ruajtur · Mund të jetë vjetruar. Serveri nuk u arrit.” Simulimi veçmas verifikoi përjashtimin e POST/panelit.
-- Kaloi / Dështoi: Kaloi prova reale offline në Edge dhe simulimi i kufijve të cache-it.
+- Hapat: Pas ruajtjes së listës së re, u ndal serveri dhe u rifreskua faqja offline në Edge.
+- Rezultati i pritur: Shfaqet lista e fundit nga `cache`; nuk pretendohet rezervim i konfirmuar.
+- Rezultati real: Pas ndërprerjes së serverit, Edge rifreskoi faqen e ruajtur, shfaqi tri kartat dhe mesazhin “Lista e fundit e ruajtur · Mund të jetë vjetruar. Serveri nuk u arrit.” Butoni i rezervimit mbeti i çaktivizuar.
+- Kaloi / Dështoi: Kaloi prova offline në shfletues. Simulimi veçmas verifikoi përjashtimin e POST/panelit.
 
 ### Prova 3 · Rikthe lidhjen dhe merr listën e re
 
-- Hapat: Simulimi mori fillimisht 08:15, pastaj përgjigje të re 08:25 dhe më pas u ndërpre rrjeti. Për provën reale kërkohet ndryshim në Neon, rifreskim online dhe kontroll offline.
+- Hapat: U lexua 08:15 nga Neon; në Neon u ndryshua ora e udhëtimit 2 në 08:25, pastaj u shtyp “Rifresko listën” online dhe u rifreskua faqja pasi serveri u ndal.
 - Rezultati i pritur: Kopja e re 08:25 shfaqet edhe pasi kërkesa e radhës dështon.
-- Rezultati real: Simulimi verifikoi zëvendësimin e kopjes 08:15 me 08:25. Prova me Neon nuk u krye: checkout-i nuk ka `DATABASE_URL` ose skedar konfigurimi Neon. URL-të e deployment-it Vercel të gjetura në GitHub kërkojnë hyrje në Vercel, prandaj nuk mund të përdoren për këtë provë. Asnjë rresht i databazës nuk u ndryshua.
-- Kaloi / Dështoi: Kaloi simulimi. Prova me Neon mbetet e papërfunduar dhe nuk raportohet si e kaluar.
+- Rezultati real: Edge mori 08:25 nga serveri/Neon dhe pas rifreskimit offline e lexoi të njëjtën orë nga cache. Më pas ora në Neon u kthye në 08:15; API-ja dhe cache-i i shfletuesit u rifreskuan dhe u verifikuan sërish me 08:15.
+- Kaloi / Dështoi: Kaloi prova reale me Neon dhe Edge. Gjendja e databazës u rikthye në vlerën fillestare.
 
 ## Publikimi
 
