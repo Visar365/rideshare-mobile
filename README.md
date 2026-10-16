@@ -23,3 +23,10 @@ npm run build
 ```
 
 Si shofer real, roli caktohet në tabelën `profilet` dhe `shofer_id` lidhet me udhëtimin nga administratori i databazës. Serveri kontrollon rolin dhe pronësinë në çdo përditësim. Demonstrimi lokal nuk është autentikim prodhimi dhe nuk përdoret në build-in production.
+
+## Java 6 · PWA dhe leximi offline
+
+Java 6 shton manifestin dhe ikonat PWA, endpoint-in publik `GET /api/udhetimet`,
+service worker-in me strategji network-first dhe faqen e pavarur `aplikacioni/public/offline.html`.
+Hap aplikacionin një herë online që worker-i të ruajë listën; pastaj provo `/offline.html`.
+Kopja mund të jetë e vjetër dhe nuk konfirmon rezervime. Provat dhe rezultatet janë te `java-06.md`.

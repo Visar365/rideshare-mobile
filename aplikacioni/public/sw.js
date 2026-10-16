@@ -1,0 +1,62 @@
+// Cache only the offline reader, its icons, and the public trips GET response.
+// Never cache login, panel, profile, cookie, or write requests.
+const CACHE = "rideshare-public-v1";
+const API = "/api/udhetimet";
+const SHELL = ["/offline.html", "/icons/icon-192.png", "/icons/icon-512.png"];
+
+self.addEventListener("install", (event) => {
+  event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(SHELL)).then(() => self.skipWaiting()));
+});
+
+self.addEventListener("activate", (event) => {
+  event.waitUntil(
+    caches.keys()
+      .then((keys) => Promise.all(keys
+        .filter((key) => key.startsWith("rideshare-public-") && key !== CACHE)
+        .map((key) => caches.delete(key))))
+      .then(() => self.clients.claim()),
+  );
+});
+
+async function readPublicList(request) {
+  const cache = await caches.open(CACHE);
+  try {
+    const response = await fetch(new Request(request, { credentials: "omit", cache: "no-store" }));
+    if (!response.ok || !response.headers.get("content-type")?.includes("application/json")) {
+      throw new Error("Lista nuk erdhi nga serveri");
+    }
+    const headers = new Headers(response.headers);
+    headers.set("x-rideshare-source", "network");
+    headers.set("x-rideshare-saved-at", new Date().toISOString());
+    const fresh = new Response(await response.arrayBuffer(), { status: 200, headers });
+    try {
+      await cache.put(API, fresh.clone());
+    } catch {
+      // If storage is unavailable, still return the fresh server response.
+      fresh.headers.delete("x-rideshare-saved-at");
+    }
+    return fresh;
+  } catch {
+    const saved = await cache.match(API);
+    if (!saved) {
+      return Response.json({ error: "no_snapshot" }, { status: 503 });
+    }
+    const headers = new Headers(saved.headers);
+    headers.set("x-rideshare-source", "cache");
+    return new Response(await saved.arrayBuffer(), { status: 200, headers });
+  }
+}
+
+self.addEventListener("fetch", (event) => {
+  const request = event.request;
+  const url = new URL(request.url);
+  if (request.method !== "GET" || url.origin !== self.location.origin) return;
+
+  if (url.pathname === API && !url.search) {
+    event.respondWith(readPublicList(request));
+  } else if (request.mode === "navigate" && ["/", "/offline.html"].includes(url.pathname)) {
+    event.respondWith(fetch(request).catch(async () =>
+      (await caches.match("/offline.html")) || new Response("Hape RideShare një herë me internet.", { status: 503 }),
+    ));
+  }
+});
