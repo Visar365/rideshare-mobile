@@ -48,4 +48,5 @@ dallojnë kontrollet HTTP dhe simulimin nga provat reale në telefon/shfletues.
 - Repository personal: https://github.com/Visar365/rideshare-mobile
 - Commit: `065c42b` — Add Java 6 offline PWA
 - Push origin: u shty te `main`.
-- Dorëzimi në formular/Issue: nuk u krye; linku i formularit ose Issue-t nuk ishte dhënë.
+- Dorëzimi: [Issue #589 · Java 6](https://github.com/arbenl/arbenl-mobile-assignments-2026-2027/issues/589).
+- Kontrolli automatik: 5/5 kontrolle teknike kaluan te commit-i `58cb6f0`; ky kontroll nuk ekzekuton aplikacionin dhe nuk është notë.
