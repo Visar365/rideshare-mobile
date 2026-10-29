@@ -25,45 +25,45 @@ Arsyeja: Përdoruesi duhet të informohet kur nuk ka vende të lira dhe të kupt
 
 Zgjidhja: Shtova një kontroll që shfaq paralajmërim kur udhëtimi nuk ka vende të lira.
 
-Skedari: aplikacioni/src/components/KartaUdhetimi.tsx
+**Skedari:** `aplikacioni/src/components/KartaUdhetimi.tsx`
 
 ## Prova 1 (Hapat, Pritshmëria, Vëzhgimi)
 
-Hapat:
+**Hapat:**
 1. Hapa faqen kryesore të RideShare.
 2. Zgjodha një udhëtim.
 3. Kontrollova informacionin e kartës.
 
-Pritshmëria:
+**Pritshmëria:**
 Të shfaqen nisja, destinacioni, ora, vendtakimi dhe numri i vendeve të lira.
 
-Vëzhgimi:
+**Vëzhgimi:**
 Kontrollova kartën dhe informacionin e shfaqur.
 
 ## Prova 2 (Hapat, Pritshmëria, Vëzhgimi)
 
-Hapat:
+**Hapat:**
 1. Zgjodha një udhëtim me zero vende të lira.
 2. Hapa faqen kryesore.
 3. Kontrollova nëse shfaqej paralajmërimi.
 
-Pritshmëria:
+**Pritshmëria:**
 Të shfaqet mesazhi se nuk ka vende të lira.
 
-Vëzhgimi:
+**Vëzhgimi:**
 Kontrollova nëse paralajmërimi shfaqej në kartë.
 
 ## Prova 3 (Hapat, Pritshmëria, Vëzhgimi)
 
-Hapat:
+**Hapat:**
 1. Hapa detajet e një udhëtimi.
 2. Kontrollova opsionin për kërkesën.
 3. Kontrollova mesazhin e paraqitur nga aplikacioni.
 
-Pritshmëria:
+**Pritshmëria:**
 Aplikacioni të tregojë qartë se veprimi është demonstrim dhe jo rezervim real.
 
-Vëzhgimi:
+**Vëzhgimi:**
 Kontrollova mesazhin e paraqitur në aplikacion.
 
 ## Para dhe Pas
