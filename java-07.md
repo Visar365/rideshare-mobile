@@ -1,31 +1,40 @@
 RideShare — Java 7#
-Çfarë bëra këtë javë#
-E kalova projektin RideShare me të dhëna demo: Arta (u-arta), shoferi Dren (u-dren) dhe udhëtimi R-101 nga Prishtina në Gjilan. Rregullova një problem që lejonte Artën të dërgonte disa herë kërkesë për të njëjtin udhëtim. Tani kërkesa e përsëritur refuzohet dhe vendet nuk ulen sërish.
+Rasti im#
+P7-417 — GitHub: Visar365. Ky projekt demonstrues në Java paraqet kërkimin e udhëtimeve dhe dërgimin e kërkesave për vende. Të dhënat demo përfshijnë pasagjeren Artën (u-arta), shoferët Dren (u-dren) dhe Ela (u-ela), si dhe udhëtime mes Prishtinës, Gjilanit dhe Pejës.
 
-Provat#
-Rrjedha kryesore#
-U kyça si Arta, kërkova gjilan, hapa detajet e R-101, dërgova kërkesë dhe kontrollova listën e kërkesave. Prisja të shihja statusin PENDING dhe numrin e vendeve të ulej nga 3 në 2. Kështu ndodhi në demonstrimin interaktiv.
+Parashikimi#
+Pasagjeri duhet të gjejë një udhëtim sipas destinacionit, të shohë detajet dhe të dërgojë kërkesë. Kërkesa e parë duhet të shfaqet me statusin PENDING dhe të ulë numrin e vendeve të lira me një. Pasagjeri nuk duhet të ndryshojë udhëtimin; shoferi mund të ndryshojë vetëm udhëtimin e vet.
 
-Gabimi dhe korrigjimi#
-Provova të kërkoja dy herë vend në R-101. Para korrigjimit, kërkesat e përsëritura mund të ulnin vendet pa nevojë. Tani kërkesa e dytë refuzohet; testi kontrollon që ka vetëm një kërkesë dhe kanë mbetur dy vende.
-
-Vura re edhe se të dhënat ruhen vetëm në memorie dhe humbin kur mbyllet programi. Ky është kufizim i demonstrimit; nuk shtova bazë të dhënash.
-
-Të dhënat dhe lejet#
-Përdoruesit, udhëtimet dhe kërkesat ruhen në listat brenda RideShareService. Gjatë provës, kontrolli konfirmoi se pasagjerja nuk mund ta ndryshojë udhëtimin. Shoferi mund të ndryshojë vetëm udhëtimin e vet, ndërsa administratori mund të ndryshojë cilindo.
-
-Testet automatike kaluan: 8/8. Provën me koleg nuk e kam bërë ende; duhet ta provojmë së bashku dhe të shënojmë çfarë ndodh.
-
-Skedarët kryesorë#
-src/rideshare/Main.java — hyrja dhe menyja e programit.
-src/rideshare/RideShareService.java — kërkimi, kërkesat dhe lejet.
-src/rideshare/User.java, Ride.java, RideRequest.java — modelet.
-test/rideshare/RideShareServiceTest.java — testet automatike.
-README.md — udhëzimet për nisjen.
-Demonstrimi nuk është publikuar ende dhe nuk ka link repository në këtë dosje.
-
-Çfarë mund të përmirësoj më tej#
-Të dhënat humbin kur mbyllet programi. Një hap i ardhshëm do të ishte ruajtja e tyre në bazë të dhënash. Hyrja është vetëm për demo dhe nuk përdor fjalëkalim.
+Ndryshimi i ri#
+Shtova refuzimin e kërkesës së përsëritur nga i njëjti pasagjer për të njëjtin udhëtim. Kontrolli ndodh para se të pakësohen vendet, prandaj një kërkesë e dytë nuk krijohet dhe numri i vendeve nuk ndryshon përsëri. Shtova edhe kontrolle automatike për këtë rast, kërkimin pa dallim shkronjash të mëdha e të vogla, lejet, ID-në e panjohur dhe uljen e vendeve pas kërkesës së parë.
 
 Ndihma nga AI#
-Përdora AI për të shqyrtuar kodin, për të ndihmuar me korrigjimin e kërkesave të përsëritura dhe për të rregulluar raportin. E kompilova projektin, i ekzekutova testet automatike dhe e provova vetë rrjedhën interaktive. Kontrollin me koleg nuk e kam kryer.
+Përdora AI për të shqyrtuar rrjedhën e kërkesave, për të ndihmuar në parandalimin e kërkesave të përsëritura dhe për të strukturuar këtë raport. Përmbajtjen e raportit e krahasova me kodin dhe testet e projektit. Prova me koleg nuk është kryer.
+
+Dy probleme dhe korrigjimi#
+Kërkesa e dyfishtë: para korrigjimit, i njëjti pasagjer mund të kërkonte përsëri vend në të njëjtin udhëtim dhe të pakësonte vendet pa nevojë. Shtova kontrollin e kërkesave ekzistuese para përditësimit të vendeve; kërkesa e përsëritur tani refuzohet.
+Të dhënat nuk ruhen: përdoruesit, udhëtimet dhe kërkesat mbahen në memorie dhe humbin kur mbyllet programi. Kjo është ende kufizim i demonstrimit; ruajtja në bazë të dhënash është punë e ardhshme.
+Prova 1 — Kërkim dhe detaje#
+Hapat: Kyçu si u-arta; kërko gjilan; hap detajet e udhëtimit R-101.
+Pritshmëria: Kërkimi gjen udhëtimin nga Prishtina në Gjilan, ndërsa detajet shfaqin orën, çmimin, shoferin dhe vendet e lira.
+Vëzhgimi: Rrjedha u provua në demonstrimin interaktiv. Testet automatike kontrollojnë kërkimin gjilan dhe GJILAN, si dhe gjetjen e R-101.
+Prova 2 — Kërkesë dhe vende të lira#
+Hapat: Si Arta, dërgo kërkesë për R-101 dhe shfaq kërkesat e mia.
+Pritshmëria: Krijohet një kërkesë me status PENDING; vendet e lira ulen nga 3 në 2.
+Vëzhgimi: Ky rezultat kontrollohet nga testi testRequestReducesAvailableSeats; rrjedha u provua edhe në demonstrimin interaktiv.
+Prova 3 — Kërkesë e përsëritur dhe lejet#
+Hapat: Dërgo kërkesë të dytë për R-101 si Arta; pastaj provo të ndryshosh udhëtimin R-101 si pasagjere.
+Pritshmëria: Kërkesa e dytë refuzohet pa ulur vendet sërish; pasagjerja nuk mund ta ndryshojë udhëtimin.
+Vëzhgimi: Testet automatike kontrollojnë një kërkesë të vetme, dy vende të mbetura dhe refuzimin e ndryshimit nga pasagjerja. Prova me koleg nuk është bërë.
+Skedarët në repository#
+src/rideshare/Main.java
+src/rideshare/RideShareService.java
+src/rideshare/User.java
+src/rideshare/Ride.java
+src/rideshare/RideRequest.java
+test/rideshare/RideShareServiceTest.java
+README.md
+Ky repository është projekt Java dhe nuk përmban skedarë .tsx, .ts, .js, .jsx ose .css; prandaj nuk ka shtigje të tilla për të listuar. Skedarët e përpiluar te out/ nuk përfshihen.
+
+Kufizimet dhe hapat e ardhshëm#
+Hyrja është vetëm për demonstrim dhe nuk përdor fjalëkalim. Të dhënat humbin kur mbyllet programi. Hapat e ardhshëm janë ruajtja e të dhënave në bazë të dhënash dhe prova me koleg. Projekti kompilohet me JDK dhe nuk ka ndërfaqe grafike.
