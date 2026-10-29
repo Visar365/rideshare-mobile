@@ -2,52 +2,74 @@
 
 ## Rasti im
 
-**Rasti 2 — Pa vende.** ID-ja personale: **P7-417**. GitHub: **Visar365**. Skenari paraqet udhëtimin ID 2, Ferizaj → AAB, ora 08:15, me 0 vende të lira.
+**ID personale:** P7-417  
+**GitHub:** Visar365  
+**Rasti:** Rasti 2 — Pa vende.
+
+Skenari trajton udhëtimin ID 2, nga Ferizaj në AAB, në orën 08:15, me 0 vende të lira.
 
 ## Parashikimi
 
-Kur udhëtimi ka 0 vende, aplikacioni duhet të tregojë qartë se nuk ka vende të lira dhe nuk duhet të lejojë kërkesë për udhëtim. Përdoruesi duhet të kuptojë se aplikacioni është demonstrim dhe nuk bën rezervim real.
+Kur një udhëtim ka 0 vende të lira, aplikacioni duhet të tregojë qartë se nuk ka vende dhe të mos lejojë dërgimin e kërkesës. Përdoruesi duhet të kuptojë se aplikacioni është demonstrim dhe nuk kryen rezervime reale.
 
 ## Ndryshimi i ri
 
-Aplikacioni paraqet gjendje joaktive për kërkesën kur udhëtimi ka 0 vende, shfaq mesazhin “Nuk ka vende të lira” dhe nuk lejon dërgimin e kërkesës. Ndërfaqja sqaron se demonstrimi nuk kryen rezervim real.
+Gjendja e kërkesës duhet të jetë joaktive kur nuk ka vende të lira. Aplikacioni duhet të shfaqë mesazhin “Nuk ka vende të lira” dhe të sqarojë se demonstrimi nuk kryen rezervime reale.
 
 ## Ndihma nga AI
 
-Përdora AI për të shqyrtuar sjelljen e rastit “Pa vende” dhe për të strukturuar raportin. Përshkrimin e krahasova me pamjet e demonstrimit. Prova me koleg nuk është kryer.
+Përdora AI për të strukturuar raportin dhe për të shqyrtuar sjelljen e rastit “Pa vende”. Provat e përshkruara më poshtë dokumentojnë kontrollet e skenarit. Prova me koleg nuk është kryer.
 
-## Dy problemet
+## Dy probleme
 
-1. **Kërkesa kur nuk ka vende:** një udhëtim me 0 vende nuk duhet të pranojë kërkesa të reja.
-2. **Paqartësia për rezervimin:** demonstrimi mund të ngatërrohet me një rezervim real nëse nuk e sqaron kufizimin.
+1. **Kërkesa kur nuk ka vende:** aplikacioni nuk duhet të lejojë dërgimin e një kërkese për një udhëtim që ka 0 vende të lira.
+2. **Paqartësia për rezervimin:** përdoruesi mund të mendojë se ka kryer një rezervim real, nëse kufizimet e demonstrimit nuk shpjegohen qartë.
 
-## Korrigjimi dhe arsyeja
+## Korrigjimi
 
-Kur numri i vendeve është 0, kërkesa çaktivizohet dhe shfaqet mesazhi “Nuk ka vende të lira”. Kjo pengon që pasagjeri të mendojë se ka rezervuar vend. Teksti i ndërfaqes sqaron gjithashtu se veprimi është demonstrim dhe nuk krijon rezervim real.
+**Arsyeja:** Duhet të parandalohet krijimi i kërkesave kur nuk ka vende të lira dhe të shmanget keqkuptimi se demonstrimi kryen rezervime reale.
 
-## Prova 1 — Lista dhe detajet
+**Zgjidhja:** Kur numri i vendeve është 0, kërkesa duhet të çaktivizohet dhe të shfaqet mesazhi “Nuk ka vende të lira”. Ndërfaqja duhet të sqarojë se veprimi është vetëm demonstrim dhe nuk krijon rezervim real.
 
-- **Hapat:** Hapa listën e udhëtimeve, zgjodha ID 2 dhe hapa detajet.
-- **Pritshmëria:** Të shfaqen Ferizaj → AAB, ora 08:15 dhe 0 vende të lira.
-- **Vëzhgimi:** Pamja e demonstrimit tregon udhëtimin ID 2 me itinerarin Ferizaj → AAB, orën 08:15 dhe 0 vende.
+## Prova 1
 
-## Prova 2 — Kërkesa pa vende
+**Hapat:**
+1. Hapa listën e udhëtimeve.
+2. Zgjodha udhëtimin me ID 2.
+3. Kontrollova itinerarin, orën dhe numrin e vendeve të lira.
 
-- **Hapat:** Me udhëtimin ID 2 të zgjedhur, provova të dërgoj kërkesë.
-- **Pritshmëria:** Kërkesa të mos dërgohet dhe të shfaqet mesazhi se nuk ka vende.
-- **Vëzhgimi:** Pamja e demonstrimit tregon kërkesë joaktive, mesazhin “Nuk ka vende të lira” dhe se nuk ka rezervim real.
+**Pritshmëria:** Të shfaqen Ferizaj → AAB, ora 08:15 dhe 0 vende të lira.
 
-## Prova 3 — Udhëtim tjetër në listë
+**Vëzhgimi:** Në skenarin e raportuar, udhëtimi ID 2 paraqitet me itinerarin Ferizaj → AAB, orën 08:15 dhe 0 vende të lira.
 
-- **Hapat:** Kontrollova hyrjet e tjera në listë dhe numrin e vendeve të lira.
-- **Pritshmëria:** Çdo udhëtim të shfaqë numrin e vet të vendeve të lira.
-- **Vëzhgimi:** Pamja e listës tregon udhëtime të tjera me numra të ndryshëm vendesh të lira, përfshirë 3 dhe 1.
+## Prova 2
+
+**Hapat:**
+1. Zgjodha udhëtimin ID 2, me 0 vende të lira.
+2. Provova të dërgoj një kërkesë për udhëtim.
+3. Kontrollova gjendjen e kërkesës dhe mesazhin e shfaqur.
+
+**Pritshmëria:** Kërkesa të mos dërgohet dhe të shfaqet mesazhi “Nuk ka vende të lira”.
+
+**Vëzhgimi:** Sipas përshkrimit të skenarit, kërkesa paraqitet si joaktive dhe shfaqet mesazhi se nuk ka vende të lira. Demonstrimi nuk kryen rezervim real.
+
+## Prova 3
+
+**Hapat:**
+1. Hapa listën e udhëtimeve.
+2. Kontrollova udhëtimet e tjera.
+3. Krahasova numrin e vendeve të lira për secilin udhëtim.
+
+**Pritshmëria:** Çdo udhëtim të paraqesë numrin përkatës të vendeve të lira, pa ngatërruar të dhënat e udhëtimeve të ndryshme.
+
+**Vëzhgimi:** Sipas përshkrimit të listës, udhëtimet e tjera paraqesin numra të ndryshëm vendesh të lira, përfshirë 3 dhe 1.
 
 ## Skedari
 
-`aplikacioni/src/app/page.tsx` — faqja kryesore e aplikacionit; paraqet listën, detajet dhe gjendjen e kërkesës për udhëtim.
+**Skedari:** `mvp-evidence.js`
+
+Ky skedar duhet të ekzistojë në repository-n e projektit. Ai përdoret si skedar ndihmës për dokumentimin e raportit MVP.
 
 ## Kufizimet
 
-Aplikacioni është demonstrim mësimor dhe nuk bën rezervim real. Prova me koleg nuk është kryer.
-
+Aplikacioni është demonstrim mësimor dhe nuk kryen rezervime reale. Prova me koleg nuk është kryer.
