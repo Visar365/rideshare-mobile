@@ -21,18 +21,20 @@ Në komponentin e kartës së udhëtimit shtova kontrollin `udhetim.vende <= 0`.
 
 Përdora AI për të shqyrtuar kodin, për të strukturuar raportin dhe për të identifikuar një mënyrë për të shfaqur paralajmërimin kur nuk ka vende të lira. Ndryshimet dhe rezultatet duhet të verifikohen në aplikacion.
 
-## Dy probleme
+## Dy probleme (1. dhe 2.)
 
 1. Kur një udhëtim ka 0 vende të lira, përdoruesi mund të mos e vërejë këtë kufizim.
 2. Paralajmërimi në kartë nuk garanton që kërkesa bllokohet edhe në faqen e detajeve.
 
-## Korrigjimi
+## Korrigjimi (arsyeja)
 
 **Arsyeja:** Përdoruesi duhet të kuptojë kur një udhëtim nuk ka vende të lira dhe nuk duhet të krijojë pritshmëri të gabuara për rezervimin.
 
 **Zgjidhja:** Në komponentin `KartaUdhetimi` shtova kushtin `udhetim.vende <= 0` dhe një mesazh paralajmërues. Ky ndryshim informon përdoruesin, por bllokimi i kërkesës duhet të kontrollohet veçmas në logjikën e krijimit të kërkesës.
 
-## Prova 1
+**Skedari:** `aplikacioni/src/components/KartaUdhetimi.tsx`
+
+## Prova 1 (Hapat, Pritshmëria, Vëzhgimi)
 
 **Hapat:**
 1. Hapa faqen kryesore të RideShare.
@@ -43,7 +45,7 @@ Përdora AI për të shqyrtuar kodin, për të strukturuar raportin dhe për të
 
 **Vëzhgimi:** Plotësohet pas ekzekutimit të aplikacionit, duke shënuar informacionin që u shfaq realisht.
 
-## Prova 2
+## Prova 2 (Hapat, Pritshmëria, Vëzhgimi)
 
 **Hapat:**
 1. Përgatita një udhëtim testues me 0 vende të lira.
@@ -54,7 +56,7 @@ Përdora AI për të shqyrtuar kodin, për të strukturuar raportin dhe për të
 
 **Vëzhgimi:** Plotësohet pas testimit, duke shënuar nëse paralajmërimi u shfaq.
 
-## Prova 3
+## Prova 3 (Hapat, Pritshmëria, Vëzhgimi)
 
 **Hapat:**
 1. Hapa faqen e detajeve të udhëtimit.
@@ -64,12 +66,6 @@ Përdora AI për të shqyrtuar kodin, për të strukturuar raportin dhe për të
 **Pritshmëria:** Kërkesa të refuzohet kur nuk ka vende të lira.
 
 **Vëzhgimi:** Plotësohet pas testimit të funksionit të kërkesës. Paralajmërimi në kartë nuk dëshmon vetvetiu se kërkesa bllokohet.
-
-## Skedari
-
-**Skedari:** `aplikacioni/src/components/KartaUdhetimi.tsx`
-
-**Arsyeja:** Ky komponent paraqet kartën e udhëtimit dhe numrin e vendeve të lira. Korrigjimi shton një paralajmërim kur numri i vendeve është zero ose më i vogël.
 
 ## Kufizimet
 
