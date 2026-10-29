@@ -6,26 +6,26 @@
 
 ## Parashikimi
 
-Kur udhëtimi ka 0 vende të lira, aplikacioni duhet ta tregojë qartë dhe të mos lejojë dërgimin e kërkesës. Duhet të jetë e qartë se demonstrimi nuk bën rezervim real.
+Kur udhëtimi ka 0 vende të lira, aplikacioni duhet ta tregojë këtë qartë dhe të mos lejojë dërgimin e kërkesës. Duhet të jetë e qartë se aplikacioni është demonstrim dhe nuk bën rezervim real.
 
 ## Ndryshimi i ri
 
-Për rastin pa vende, aplikacioni shfaq se kërkesa është joaktive dhe se nuk ka vende të lira. Butoni i kërkesës nuk lejon rezervimin kur numri i vendeve është 0.
+Për rastin pa vende, aplikacioni tregon se kërkesa është joaktive, shfaq mesazhin “Nuk ka vende të lira” dhe nuk lejon dërgimin e kërkesës.
 
 ## Ndihma nga AI
 
-Përdora AI për të shqyrtuar sjelljen e aplikacionit dhe për të strukturuar raportin. E krahasova raportin me demonstrimin dhe projektin.
+Përdora AI për të shqyrtuar sjelljen e aplikacionit dhe për të strukturuar raportin. E krahasova raportin me demonstrimin. Prova me koleg nuk është kryer.
 
 ## Dy problemet dhe korrigjimi
 
-1. **Kërkesa kur nuk ka vende:** kur udhëtimi ka 0 vende, aplikacioni nuk duhet të lejojë kërkesë. Aplikacioni e shfaq mesazhin “Nuk ka vende të lira” dhe kërkesa mbetet joaktive.
-2. **Paqartësia për rezervimin:** demonstrimi nuk krijon rezervim real. Aplikacioni e sqaron këtë që përdoruesi të mos mendojë se i është rezervuar një vend.
+1. **Kërkesa kur nuk ka vende:** me 0 vende, aplikacioni nuk duhet të lejojë kërkesë. Aplikacioni e çaktivizon kërkesën dhe shfaq mesazhin “Nuk ka vende të lira”.
+2. **Paqartësia për rezervimin:** aplikacioni është demonstrim mësimor dhe nuk krijon rezervim real. Ndërfaqja e sqaron këtë që përdoruesi të mos mendojë se i është rezervuar një vend.
 
 ## Prova 1 — Lista dhe detajet
 
 - **Hapat:** Hapa listën, zgjodha udhëtimin ID 2 dhe hapa detajet.
 - **Pritshmëria:** Të shfaqen Ferizaj → AAB, ora 08:15 dhe 0 vende të lira.
-- **Vëzhgimi:** Në demonstrim shfaqen udhëtimi ID 2, itinerari Ferizaj → AAB, ora 08:15 dhe 0 vende.
+- **Vëzhgimi:** Udhëtimi ID 2 shfaqet me itinerarin Ferizaj → AAB, orën 08:15 dhe 0 vende të lira.
 
 ## Prova 2 — Pa vende
 
@@ -36,13 +36,13 @@ Përdora AI për të shqyrtuar sjelljen e aplikacionit dhe për të strukturuar 
 ## Prova 3 — Udhëtim tjetër në listë
 
 - **Hapat:** Kontrollova udhëtimet e tjera në listë dhe numrin e vendeve të lira.
-- **Pritshmëria:** Lista të tregojë veçmas numrin e vendeve për secilin udhëtim.
-- **Vëzhgimi:** Në demonstrim shfaqen udhëtime të tjera me numër tjetër vendesh të lira.
+- **Pritshmëria:** Lista të tregojë numrin e vendeve të lira për secilin udhëtim.
+- **Vëzhgimi:** Udhëtimet e tjera shfaqen me numrat e tyre të vendeve të lira.
 
 ## Skedari
 
-`aplikacioni/src/app/page.tsx` — përmban ndërfaqen dhe logjikën e shfaqjes së udhëtimeve dhe kërkesës. Shtegu duhet të përputhet me skedarin që ndryshova në repository.
+`aplikacioni/src/app/page.tsx` — përmban ndërfaqen e listës së udhëtimeve dhe kërkesën për udhëtim.
 
 ## Kufizimet
 
-Aplikacioni është demonstrim mësimor dhe nuk bën rezervim real. Prova me koleg: nuk është kryer.
+Aplikacioni është demonstrim mësimor dhe nuk bën rezervim real. Prova me koleg nuk është kryer.
