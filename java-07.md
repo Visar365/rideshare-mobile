@@ -6,7 +6,7 @@
 **GitHub:** Visar365  
 **Rasti:** Rasti 2 — Pa vende.
 
-Skenari trajton udhëtimin ID 2, nga Ferizaj në AAB, në orën 08:15, me 0 vende të lira.
+Skenari trajton një udhëtim nga Ferizaj në AAB, në orën 08:15, me 0 vende të lira.
 
 ## Parashikimi
 
@@ -14,62 +14,62 @@ Kur një udhëtim ka 0 vende të lira, aplikacioni duhet të tregojë qartë se 
 
 ## Ndryshimi i ri
 
-Gjendja e kërkesës duhet të jetë joaktive kur nuk ka vende të lira. Aplikacioni duhet të shfaqë mesazhin “Nuk ka vende të lira” dhe të sqarojë se demonstrimi nuk kryen rezervime reale.
+Në kartën e udhëtimit shtova një kontroll që identifikon udhëtimet me 0 ose më pak vende të lira dhe shfaq një paralajmërim për përdoruesin.
 
 ## Ndihma nga AI
 
-Përdora AI për të strukturuar raportin dhe për të shqyrtuar sjelljen e rastit “Pa vende”. Provat e përshkruara më poshtë dokumentojnë kontrollet e skenarit. Prova me koleg nuk është kryer.
+Përdora AI për të strukturuar raportin dhe për të marrë ndihmë gjatë shqyrtimit të kodit. Ndryshimin duhet ta provoj në aplikacion për të konfirmuar sjelljen e tij.
 
 ## Dy probleme
 
-1. **Kërkesa kur nuk ka vende:** aplikacioni nuk duhet të lejojë dërgimin e një kërkese për një udhëtim që ka 0 vende të lira.
-2. **Paqartësia për rezervimin:** përdoruesi mund të mendojë se ka kryer një rezervim real, nëse kufizimet e demonstrimit nuk shpjegohen qartë.
+1. **Mungesa e vendeve të lira:** përdoruesi mund të mos e vërejë se një udhëtim nuk ka vende të lira.
+2. **Paqartësia për kërkesën:** përdoruesi mund të mendojë se mund të dërgojë kërkesë edhe kur udhëtimi është plot.
 
 ## Korrigjimi
 
-**Arsyeja:** Duhet të parandalohet krijimi i kërkesave kur nuk ka vende të lira dhe të shmanget keqkuptimi se demonstrimi kryen rezervime reale.
+**Arsyeja:** Përdoruesi duhet të informohet qartë kur një udhëtim nuk ka vende të lira.
 
-**Zgjidhja:** Kur numri i vendeve është 0, kërkesa duhet të çaktivizohet dhe të shfaqet mesazhi “Nuk ka vende të lira”. Ndërfaqja duhet të sqarojë se veprimi është vetëm demonstrim dhe nuk krijon rezervim real.
+**Zgjidhja:** Në komponentin e kartës së udhëtimit shtova kushtin `udhetim.vende <= 0`. Kur kushti plotësohet, shfaqet mesazhi: “Nuk ka vende të lira. Kërkesa për këtë udhëtim nuk duhet të dërgohet.”
+
+Ky ndryshim shfaq një paralajmërim në kartë. Bllokimi real i kërkesës duhet të verifikohet veçmas në faqen e detajeve dhe në logjikën që krijon kërkesën.
 
 ## Prova 1
 
 **Hapat:**
-1. Hapa listën e udhëtimeve.
-2. Zgjodha udhëtimin me ID 2.
-3. Kontrollova itinerarin, orën dhe numrin e vendeve të lira.
+1. Hapa faqen kryesore të RideShare.
+2. Gjeta një udhëtim me vende të lira.
+3. Kontrollova informacionin e shfaqur në kartë.
 
-**Pritshmëria:** Të shfaqen Ferizaj → AAB, ora 08:15 dhe 0 vende të lira.
+**Pritshmëria:** Të shfaqen nisja, destinacioni, ora, vendtakimi dhe numri i vendeve të lira.
 
-**Vëzhgimi:** Në skenarin e raportuar, udhëtimi ID 2 paraqitet me itinerarin Ferizaj → AAB, orën 08:15 dhe 0 vende të lira.
+**Vëzhgimi:** Duhet të shënohet pas ekzekutimit të aplikacionit nëse informacioni u shfaq siç pritej.
 
 ## Prova 2
 
 **Hapat:**
-1. Zgjodha udhëtimin ID 2, me 0 vende të lira.
-2. Provova të dërgoj një kërkesë për udhëtim.
-3. Kontrollova gjendjen e kërkesës dhe mesazhin e shfaqur.
+1. Përgatita një udhëtim testues me 0 vende të lira.
+2. Hapa faqen kryesore.
+3. Kontrollova kartën e atij udhëtimi.
 
-**Pritshmëria:** Kërkesa të mos dërgohet dhe të shfaqet mesazhi “Nuk ka vende të lira”.
+**Pritshmëria:** Të shfaqet mesazhi “Nuk ka vende të lira. Kërkesa për këtë udhëtim nuk duhet të dërgohet.”
 
-**Vëzhgimi:** Sipas përshkrimit të skenarit, kërkesa paraqitet si joaktive dhe shfaqet mesazhi se nuk ka vende të lira. Demonstrimi nuk kryen rezervim real.
+**Vëzhgimi:** Duhet të plotësohet pasi të provohet aplikacioni me një udhëtim që ka 0 vende.
 
 ## Prova 3
 
 **Hapat:**
-1. Hapa listën e udhëtimeve.
-2. Kontrollova udhëtimet e tjera.
-3. Krahasova numrin e vendeve të lira për secilin udhëtim.
+1. Hapa detajet e një udhëtimi pa vende të lira.
+2. Kontrollova nëse aplikacioni lejon dërgimin e kërkesës.
+3. Verifikova rezultatin dhe mesazhin e shfaqur.
 
-**Pritshmëria:** Çdo udhëtim të paraqesë numrin përkatës të vendeve të lira, pa ngatërruar të dhënat e udhëtimeve të ndryshme.
+**Pritshmëria:** Kërkesa të refuzohet kur nuk ka vende të lira dhe përdoruesi të marrë një mesazh të qartë.
 
-**Vëzhgimi:** Sipas përshkrimit të listës, udhëtimet e tjera paraqesin numra të ndryshëm vendesh të lira, përfshirë 3 dhe 1.
+**Vëzhgimi:** Duhet të plotësohet pas testimit të logjikës së kërkesës. Paralajmërimi në kartë, i vetëm, nuk provon se kërkesa bllokohet.
 
 ## Skedari
 
-**Skedari:** `mvp-evidence.js`
+**Skedari:** `aplikacioni/src/components/KartaUdhetimi.tsx`
 
-Ky skedar duhet të ekzistojë në repository-n e projektit. Ai përdoret si skedar ndihmës për dokumentimin e raportit MVP.
+**Korrigjimi:** Shtova kontrollin `udhetim.vende <= 0` për të identifikuar udhëtimet pa vende të lira.
 
-## Kufizimet
-
-Aplikacioni është demonstrim mësimor dhe nuk kryen rezervime reale. Prova me koleg nuk është kryer.
+**Arsyeja:** Përdoruesi duhet të informohet kur nuk ka vende të lira
