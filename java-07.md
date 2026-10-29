@@ -10,6 +10,10 @@ Rasti: Rasti 2 — Pa vende.
 
 Projekti: RideShare
 
+## Parashikimi
+
+Kur një udhëtim ka zero vende të lira, karta duhet të shfaqë paralajmërimin se nuk ka vende të lira. Ky raport përshkruan pritshmërinë nga kodi; rezultatet e testimit real duhen verifikuar duke ekzekutuar aplikacionin.
+
 ## Dy probleme (1. dhe 2.)
 
 1. Kur udhëtimi nuk ka vende të lira, përdoruesi mund të mos e kuptojë këtë kufizim.
