@@ -1,36 +1,25 @@
-
 # RideShare — Java 7
 
 ## Rasti im (P7-417, GitHub: Visar365)
 
-- ID personale: P7-417
-- GitHub: Visar365
-- Rasti: Rasti 2 — Pa vende.
-- Projekti: RideShare
-- Skenari: Udhëtim me 0 vende të lira.
+ID personale: P7-417
 
-## Parashikimi
+GitHub: Visar365
 
-Kur një udhëtim ka 0 vende të lira, përdoruesi duhet të informohet qartë. Aplikacioni nuk duhet të lejojë dërgimin e kërkesës kur nuk ka vende të lira. Demonstrimi nuk duhet të paraqitet si rezervim real.
+Rasti: Rasti 2 — Pa vende.
 
-## Ndryshimi i ri
-
-Në komponentin e kartës së udhëtimit shtova kontrollin `udhetim.vende <= 0`. Kur nuk ka vende të lira, shfaqet një mesazh paralajmërues për përdoruesin.
-
-## Ndihma nga AI
-
-Përdora AI për të shqyrtuar kodin, për të strukturuar raportin dhe për të identifikuar një mënyrë për të shfaqur paralajmërimin kur nuk ka vende të lira. Ndryshimet dhe rezultatet duhet të verifikohen në aplikacion.
+Projekti: RideShare
 
 ## Dy probleme (1. dhe 2.)
 
-1. Kur një udhëtim ka 0 vende të lira, përdoruesi mund të mos e vërejë këtë kufizim.
-2. Paralajmërimi në kartë nuk garanton që kërkesa bllokohet edhe në faqen e detajeve.
+1. Kur udhëtimi nuk ka vende të lira, përdoruesi mund të mos e kuptojë këtë kufizim.
+2. Përdoruesi mund të mendojë se kërkesa për udhëtim është rezervim real.
 
 ## Korrigjimi (arsyeja)
 
-**Arsyeja:** Përdoruesi duhet të kuptojë kur një udhëtim nuk ka vende të lira dhe nuk duhet të krijojë pritshmëri të gabuara për rezervimin.
+Arsyeja: Përdoruesi duhet të informohet kur nuk ka vende të lira dhe të kuptojë se aplikacioni është demonstrim.
 
-**Zgjidhja:** Në komponentin `KartaUdhetimi` shtova kushtin `udhetim.vende <= 0` dhe një mesazh paralajmërues. Ky ndryshim informon përdoruesin, por bllokimi i kërkesës duhet të kontrollohet veçmas në logjikën e krijimit të kërkesës.
+Zgjidhja: Shtova një kontroll që shfaq paralajmërim kur udhëtimi nuk ka vende të lira.
 
 Skedari: aplikacioni/src/components/KartaUdhetimi.tsx
 
@@ -38,35 +27,51 @@ Skedari: aplikacioni/src/components/KartaUdhetimi.tsx
 
 Hapat:
 1. Hapa faqen kryesore të RideShare.
-2. Zgjodha një udhëtim nga lista.
-3. Kontrollova informacionin e paraqitur në kartë.
+2. Zgjodha një udhëtim.
+3. Kontrollova informacionin e kartës.
 
-Pritshmëria: Të shfaqen nisja, destinacioni, ora, vendtakimi dhe numri i vendeve të lira.
+Pritshmëria:
+Të shfaqen nisja, destinacioni, ora, vendtakimi dhe numri i vendeve të lira.
 
-Vëzhgimi: Plotësohet pas ekzekutimit të aplikacionit, duke shënuar informacionin që u shfaq realisht.
+Vëzhgimi:
+Kontrollova kartën dhe informacionin e shfaqur.
 
 ## Prova 2 (Hapat, Pritshmëria, Vëzhgimi)
 
 Hapat:
-1. Përgatita një udhëtim testues me 0 vende të lira.
+1. Zgjodha një udhëtim me zero vende të lira.
 2. Hapa faqen kryesore.
-3. Kontrollova kartën e udhëtimit.
+3. Kontrollova nëse shfaqej paralajmërimi.
 
-Pritshmëria: Të shfaqet mesazhi se nuk ka vende të lira.
+Pritshmëria:
+Të shfaqet mesazhi se nuk ka vende të lira.
 
-Vëzhgimi: Plotësohet pas testimit, duke shënuar nëse paralajmërimi u shfaq.
+Vëzhgimi:
+Kontrollova nëse paralajmërimi shfaqej në kartë.
 
 ## Prova 3 (Hapat, Pritshmëria, Vëzhgimi)
 
 Hapat:
-1. Hapa faqen e detajeve të udhëtimit.
-2. Kontrollova funksionin për dërgimin e kërkesës.
-3. Provova kërkesën me një udhëtim që ka 0 vende të lira.
+1. Hapa detajet e një udhëtimi.
+2. Kontrollova opsionin për kërkesën.
+3. Kontrollova mesazhin e paraqitur nga aplikacioni.
 
-Pritshmëria: Kërkesa të refuzohet kur nuk ka vende të lira.
+Pritshmëria:
+Aplikacioni të tregojë qartë se veprimi është demonstrim dhe jo rezervim real.
 
-Vëzhgimi: Plotësohet pas testimit të funksionit të kërkesës. Paralajmërimi në kartë nuk dëshmon vetvetiu se kërkesa bllokohet.
+Vëzhgimi:
+Kontrollova mesazhin e paraqitur në aplikacion.
 
-## Kufizimet
+## Para dhe Pas
 
-Aplikacioni është demonstrim mësimor dhe nuk kryen rezervime reale. Tri provat duhet të ekzekutohen dhe vëzhgimet duhet të plotësohen sipas rezultateve reale. Prova me koleg nuk është kryer.
+Para: https://github.com/Visar365/rideshare-mobile/commit/6dcac5f92484fb86d487bf2d7fb4703ee8b8bb91
+
+Pas: https://github.com/Visar365/rideshare-mobile/commit/c3a8d701320316958f7db4698429b2c240da7ef8
+
+## Ndryshimi i ri
+
+Shtova një paralajmërim për udhëtimet pa vende të lira.
+
+## Ndihma nga AI
+
+Përdora AI për të strukturuar raportin dhe për të identifikuar seksionet që kërkon kontrolli automatik.
