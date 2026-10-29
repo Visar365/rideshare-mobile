@@ -6,19 +6,19 @@
 
 ## Parashikimi
 
-Kur udhëtimi ka 0 vende të lira, aplikacioni duhet ta tregojë këtë qartë dhe të mos lejojë dërgimin e kërkesës. Duhet të jetë e qartë se aplikacioni është demonstrim dhe nuk bën rezervim real.
+Kur udhëtimi ka 0 vende të lira, aplikacioni duhet ta tregojë këtë qartë dhe të mos lejojë dërgimin e kërkesës. Përdoruesi duhet ta kuptojë se aplikacioni është demonstrim dhe nuk bën rezervim real.
 
 ## Ndryshimi i ri
 
-Për rastin pa vende, aplikacioni tregon se kërkesa është joaktive, shfaq mesazhin “Nuk ka vende të lira” dhe nuk lejon dërgimin e kërkesës.
+Kur udhëtimi nuk ka vende të lira, aplikacioni e shfaq kërkesën si joaktive, tregon mesazhin “Nuk ka vende të lira” dhe nuk lejon dërgimin e kërkesës.
 
 ## Ndihma nga AI
 
-Përdora AI për të shqyrtuar sjelljen e aplikacionit dhe për të strukturuar raportin. E krahasova raportin me demonstrimin. Prova me koleg nuk është kryer.
+Përdora AI për të shqyrtuar sjelljen e aplikacionit dhe për të ndihmuar me strukturën e raportit. Krahasova raportin me demonstrimin. Prova me koleg nuk është kryer.
 
 ## Dy problemet dhe korrigjimi
 
-1. **Kërkesa kur nuk ka vende:** me 0 vende, aplikacioni nuk duhet të lejojë kërkesë. Aplikacioni e çaktivizon kërkesën dhe shfaq mesazhin “Nuk ka vende të lira”.
+1. **Kërkesa kur nuk ka vende:** me 0 vende, aplikacioni nuk duhet të lejojë kërkesën. Korrigjimi e lë kërkesën joaktive dhe shfaq mesazhin “Nuk ka vende të lira”.
 2. **Paqartësia për rezervimin:** aplikacioni është demonstrim mësimor dhe nuk krijon rezervim real. Ndërfaqja e sqaron këtë që përdoruesi të mos mendojë se i është rezervuar një vend.
 
 ## Prova 1 — Lista dhe detajet
@@ -37,11 +37,11 @@ Përdora AI për të shqyrtuar sjelljen e aplikacionit dhe për të strukturuar 
 
 - **Hapat:** Kontrollova udhëtimet e tjera në listë dhe numrin e vendeve të lira.
 - **Pritshmëria:** Lista të tregojë numrin e vendeve të lira për secilin udhëtim.
-- **Vëzhgimi:** Udhëtimet e tjera shfaqen me numrat e tyre të vendeve të lira.
+- **Vëzhgimi:** Udhëtimet e tjera shfaqen me numra të ndryshëm vendesh të lira.
 
 ## Skedari
 
-`aplikacioni/src/app/page.tsx` — përmban ndërfaqen e listës së udhëtimeve dhe kërkesën për udhëtim.
+`aplikacioni/src/app/page.tsx` — përmban faqen dhe ndërfaqen e aplikacionit RideShare.
 
 ## Kufizimet
 
