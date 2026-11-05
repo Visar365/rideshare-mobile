@@ -17,3 +17,38 @@
 .statusi { margin-top: 12px; padding: 12px; border-radius: 10px; background: #eef2ff; font-weight: 600; }
 .mesazhi { color: #5b6573; margin-top: 8px; }
 @media (max-width: 400px) { .titulli { font-size: 1.35rem; } }
+.meeting {
+  margin: 1.5rem 0;
+  padding: clamp(1.25rem, 4vw, 2rem);
+  background: #111f33;
+  color: #f4f7fc;
+  border: 1px solid #2a3d56;
+  border-top: 4px solid #76e5cc;
+  border-radius: 18px;
+}
+
+.meeting h2 { margin: 0 0 .5rem; font-size: clamp(1.35rem, 3vw, 1.8rem); }
+.meeting h3 { margin: 0 0 .8rem; font-size: 1.15rem; }
+.meeting .eyebrow { margin: 0 0 .5rem; color: #b7ff55; }
+.meetingMeta, .meetingPrivacy { color: #afbed2; }
+.meetingGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 1.25rem; }
+.meetingCard { min-width: 0; padding: 1.15rem; background: #17283e; border: 1px solid #30445e; border-radius: 14px; }
+.meetingCard label { display: block; margin: .85rem 0 .4rem; font-weight: 700; }
+.meetingCard input { width: 100%; min-height: 46px; padding: .65rem .8rem; color: #f4f7fc; background: #101b2c; border: 1px solid #60738b; border-radius: 9px; font: inherit; }
+.meetingCard input:focus-visible, .meetingButton:focus-visible { outline: 3px solid #76e5cc; outline-offset: 3px; }
+.meetingButton { width: 100%; min-height: 46px; margin-top: .75rem; padding: .65rem .9rem; border: 0; border-radius: 9px; color: #0b1721; background: #76e5cc; font: inherit; font-weight: 750; cursor: pointer; }
+.meetingButton:disabled { cursor: wait; opacity: .72; }
+.meetingButtonSecondary { color: #e5fff8; background: #20554f; border: 1px solid #34786e; }
+.meetingError, .meetingConfirmed, .locationStatus, .positionResult { margin: .8rem 0 0; padding: .75rem .85rem; border-radius: 9px; }
+.meetingError { color: #ffd3d7; background: #40252d; }
+.meetingConfirmed, .locationStatus[data-state="success"] { color: #c0ffe3; background: #123c34; }
+.locationStatus[data-state="idle"], .locationStatus[data-state="loading"] { color: #d3deed; background: #1c2e45; }
+.locationStatus[data-state="denied"], .locationStatus[data-state="timeout"], .locationStatus[data-state="unavailable"] { color: #ffe4a8; background: #3b321f; }
+.positionResult { color: #dce7f5; background: #101b2c; border: 1px solid #344a63; }
+.positionResult p { margin: .35rem 0 0; color: inherit; }
+.meetingPrivacy { margin: 1rem 0 0; font-size: .9rem; }
+
+@media (max-width: 680px) {
+  .meetingGrid { grid-template-columns: 1fr; }
+}
+
