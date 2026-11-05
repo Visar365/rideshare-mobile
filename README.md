@@ -6,7 +6,7 @@ Projekt demonstrues për udhëtimet e AAB-së. Java 5 shton hyrjen GitHub, panel
 
 ```powershell
 cd aplikacioni
-npm install
+npm ci --ignore-scripts
 npm run dev
 ```
 
@@ -30,3 +30,9 @@ Java 6 shton manifestin dhe ikonat PWA, endpoint-in publik `GET /api/udhetimet`,
 service worker-in me strategji network-first dhe faqen e pavarur `aplikacioni/public/offline.html`.
 Hap aplikacionin një herë online që worker-i të ruajë listën; pastaj provo `/offline.html`.
 Kopja mund të jetë e vjetër dhe nuk konfirmon rezervime. Provat dhe rezultatet janë te `java-06.md`.
+
+## Java 8 · Vendndodhja dhe vendtakimi
+
+Faqja e provës `http://localhost:3000/java-08-test` përdor komponentin e njëjtë të vendtakimit si faqja e detajeve të udhëtimit. Ajo përdor udhëtim fiktiv lokal dhe hapet pa hyrje, Neon ose sekrete. Vendndodhja kërkohet vetëm pas klikimit; vendimi manual mbetet i disponueshëm nëse leja refuzohet ose API-ja mungon.
+
+`mobile-week08.json` përcakton rrugën e faqes për kontrollin e Java 8. Paketa dhe `package-lock.json` janë bashkë te `aplikacioni/`. GitHub Actions ekzekuton `npm ci --ignore-scripts`, `npm run typecheck` dhe `npm run build` me Node.js 22. Provat manuale dhe rezultati i kontrollit të jashtëm dokumentohen te `java-08.md`.

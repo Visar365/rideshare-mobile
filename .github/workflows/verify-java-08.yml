@@ -1,0 +1,36 @@
+name: Verify Java 8
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: aplikacioni
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: aplikacioni/package-lock.json
+      - run: npm ci --ignore-scripts
+      - run: npm run typecheck
+      - run: npm run build
+      - name: Smoke-test the Java 8 page
+        run: |
+          npm run start > /tmp/rideshare-next.log 2>&1 &
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:3000/java-08-test > /tmp/java-08-test.html; then break; fi
+            sleep 2
+          done
+          grep -q 'data-testid="meeting-input"' /tmp/java-08-test.html
+          grep -q 'data-testid="location-status"' /tmp/java-08-test.html
+          grep -q 'data-state="idle"' /tmp/java-08-test.html
+          grep -q 'Ferizaj' /tmp/java-08-test.html
+          grep -q 'AAB' /tmp/java-08-test.html
