@@ -49,7 +49,8 @@ Shtova përfundimin e udhëtimit me vendtakim manual dhe me vendndodhjen e pajis
 - `npm ci --ignore-scripts` — përfundoi.
 - `npm run typecheck` — kaloi.
 - `npm run build` — kaloi; përfshin rrugën statike `/java-08-test`.
-- GitHub Actions është konfiguruar me Node.js 22 për të ekzekutuar instalimin, typecheck dhe build në push/PR.
+- GitHub Actions, run `42056316467` — kaloi me Node.js 22: instalimi, typecheck, build dhe smoke test-i i faqes së provës.
+- Pull request: https://github.com/Visar365/rideshare-mobile/pull/1 (i hapur, jo i bashkuar).
 - Kontrollet automatike të jashtme Java 8 dhe provat me leje reale nuk janë ekzekutuar ende.
 
 ## Ku gjendet puna
