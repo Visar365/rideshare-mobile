@@ -37,8 +37,8 @@ Përdora AI për të përshtatur faqen sipas udhëzimeve, për të shtuar etiket
 ## Prova me një hyrje të re
 **Statusi:** Testi i ndërveprimit kaloi në kontrollin automatik të aplikacionit (`node --test tests/app.test.cjs`, 8 kontrolle kaluan, 0 dështuan). Kontrolli përdor DOM të simuluar; nuk është provë manuale në shfletues.
 
-- **Hyrja që provova:** Konfirmova “Biblioteka”, ndryshova fushën në “Parkingu” pa e konfirmuar, pastaj vendosa vetëm hapësira (`"   "`) dhe shtypa “Konfirmo vendtakimin”.
-- **Parashikimi im para klikimit:** Duhet të shfaqet gabimi për vendtakim bosh dhe konfirmimi “Biblioteka” të mbetet i pandryshuar.
-- **Çfarë pashë realisht:** Në testin automatik, pas klikimit u shfaq gabimi për tekst bosh; “Parkingu” nuk e ndryshoi konfirmimin dhe “Biblioteka” mbeti e shfaqur si vendtakim i konfirmuar. Ky rezultat vjen nga kontrolli i ndërveprimit në mjedis të simuluar.
-- **Skedari dhe funksioni që e shpjegojnë:** `app.js`, dëgjuesi `click` i `confirmButton`; kontrollon `decisionInput.value.trim()` dhe shfaq gabimin te `meeting-error`, veçmas nga `confirmed-meeting`. Rasti kontrollohet te `tests/app.test.cjs`, prova 4.
-- **Çfarë kuptova ose korrigjova:** Hapësirat trajtohen si hyrje bosh. Gabimi nuk e mbishkruan konfirmimin e mëparshëm, sepse gabimi dhe vendtakimi i konfirmuar shfaqen në elemente të ndara.
+- Hyrja që provova: Konfirmova “Biblioteka”, ndryshova fushën në “Parkingu” pa e konfirmuar, pastaj vendosa vetëm hapësira (`"   "`) dhe shtypa “Konfirmo vendtakimin”.
+- Parashikimi im para klikimit: Duhet të shfaqet gabimi për vendtakim bosh dhe konfirmimi “Biblioteka” të mbetet i pandryshuar.
+- Çfarë pashë realisht: Në testin automatik, pas klikimit u shfaq gabimi për tekst bosh; “Parkingu” nuk e ndryshoi konfirmimin dhe “Biblioteka” mbeti e shfaqur si vendtakim i konfirmuar. Ky rezultat vjen nga kontrolli i ndërveprimit në mjedis të simuluar.
+- Skedari dhe funksioni që e shpjegojnë: `app.js`, dëgjuesi `click` i `confirmButton`; kontrollon `decisionInput.value.trim()` dhe shfaq gabimin te `meeting-error`, veçmas nga `confirmed-meeting`. Rasti kontrollohet te `tests/app.test.cjs`, prova 4.
+- Çfarë kuptova ose korrigjova: Hapësirat trajtohen si hyrje bosh. Gabimi nuk e mbishkruan konfirmimin e mëparshëm, sepse gabimi dhe vendtakimi i konfirmuar shfaqen në elemente të ndara.
